@@ -1,4 +1,5 @@
 #include "InputLineWidget.h"
+#include <iostream>
 
 InputLineW::InputLineW(QWidget* parent=nullptr) : QWidget(parent)
 {
@@ -30,6 +31,7 @@ void InputLineW::enable_add_btn()
 
 void InputLineW::unenable_add_btn()
 {
+	std::cout << "unable btn" << std::endl;
 	addbtn->setEnabled(false);	
 	emit data_recieved();
 }

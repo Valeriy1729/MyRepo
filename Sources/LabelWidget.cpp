@@ -26,8 +26,9 @@ LabelWidget::LabelWidget(QWidget* parent=nullptr) : QWidget(parent)
 
 int LabelWidget::globalNumber {0};
 
-void LabelWidget::enable()
+void LabelWidget::setText(QString qstr)
 {
+	label->setText(qstr);
 	editbtn->setEnabled(true);
 	delbtn->setEnabled(true);
 	chbox->setEnabled(true);

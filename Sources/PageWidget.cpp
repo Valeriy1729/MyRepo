@@ -1,4 +1,6 @@
 #include "PageWidget.h"
+#include <iostream>
+#include <QDebug>
 
 PageWidget::PageWidget(char day, char month, int year, QWidget* parent=nullptr) : QWidget(parent)
 {
@@ -10,4 +12,12 @@ PageWidget::PageWidget(char day, char month, int year, QWidget* parent=nullptr) 
 	QWidget* WidgetArr[] {Datelabel, TasksW, InputW};
 	for(QWidget* W : WidgetArr) v_layout->addWidget(W);
 
+	connect(InputW, SIGNAL(data_recieved()), this, SLOT(data_processing()));
+}
+
+QString PageWidget::strdata {""};
+
+void PageWidget::data_processing()
+{
+	TasksW->addData(InputW->gettext());	
 }

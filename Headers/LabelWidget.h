@@ -24,8 +24,7 @@ public:
 	LabelWidget(QWidget* parent);
 	~LabelWidget() { }
 
-public slots:
-	void enable();
+	void setText(QString qstr);
 };
 
 #endif

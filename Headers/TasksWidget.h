@@ -7,11 +7,14 @@
 class TasksWidget : public QWidget {
 	Q_OBJECT
 	enum { LINES_COUNT = 5 };
+	int currentLine {0};
 	LabelWidget** LArray {nullptr};
 	QGridLayout* g_layout {nullptr};	
 public:
 	TasksWidget(QWidget* parent);
 	~TasksWidget() { }
+	int getcount() { return LINES_COUNT; }
+	void addData(QString qstr);
 };
 
 
