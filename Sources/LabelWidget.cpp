@@ -9,17 +9,15 @@ LabelWidget::LabelWidget(QWidget* parent=nullptr) : QWidget(parent)
 	chbox = new QCheckBox(this);
 	g_layout = new QGridLayout(this);
 
-	label->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-	editbtn->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
-	delbtn->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
-	numlabel->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
+	QWidget* WidgetArr[] {numlabel, chbox, label, editbtn, delbtn};
+	int ind {1}, _arrind {0};
+	int lengths[] {2, 1, 7, 1, 1};
 
-	int ind {1};
-	g_layout->addWidget(numlabel, 0, ind);		ind += 2;
-	g_layout->addWidget(chbox, 0, ind);		ind += 1;
-	g_layout->addWidget(label, 0, ind, 1, 7); 	ind += 7;
-	g_layout->addWidget(editbtn, 0, ind); 		ind += 1;
-	g_layout->addWidget(delbtn, 0, ind);		ind += 1;
+	for(QWidget* W : WidgetArr) {
+		W->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
+		g_layout->addWidget(W, 0, ind, 1, lengths[_arrind]);
+		ind += lengths[_arrind++];
+	}
 }
 
 int LabelWidget::globalNumber {0};
