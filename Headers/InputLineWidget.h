@@ -15,10 +15,20 @@ class InputLineW : public QWidget {
 	QLineEdit* editline {nullptr};
 	QPushButton* addbtn {nullptr};
 	QGridLayout* g_layout {nullptr};
+	QString recieved_data {""};
 
 public:	
 	InputLineW(QWidget* parent);
 	~InputLineW() { }
+
+	QString gettext();
+
+public slots:
+	void enable_add_btn();
+	void unenable_add_btn();
+
+signals:
+	void data_recieved();
 };
 
 #endif
