@@ -23,6 +23,9 @@ class LabelWidget : public QWidget {
 public:
 	LabelWidget(QWidget* parent);
 	~LabelWidget() { }
+
+public slots:
+	void enable();
 };
 
 #endif
