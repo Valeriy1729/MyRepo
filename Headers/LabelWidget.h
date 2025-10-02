@@ -11,7 +11,10 @@
 
 class LabelWidget : public QWidget {
 	Q_OBJECT
+	static int globalNumber;
+	int locNumber {globalNumber};
 	QLabel* label {nullptr};
+	QLabel* numlabel {nullptr};
 	QPushButton* editbtn {nullptr};
 	QPushButton* delbtn {nullptr};
 	QCheckBox* chbox {nullptr};
@@ -21,6 +24,5 @@ public:
 	LabelWidget(QWidget* parent);
 	~LabelWidget() { }
 };
-
 
 #endif
