@@ -9,9 +9,12 @@ const char* InputLineW::labelEditText {"Edit Task№%1: "};
 InputLineW::InputLineW(QWidget* parent=nullptr) : QWidget(parent)
 {
 	label = new QLabel(labelDefaultText, this);		
-	editline = new QLineEdit(this);
+	editline = new QLineEdit(" ", this);
 	addbtn = new QPushButton(btnDefaultText, this);
 	g_layout = new QGridLayout(this);
+
+	addbtn->setObjectName("addbtn");
+	label->setObjectName("inputLabel");
 
 	addbtn->setEnabled(false);
 
@@ -36,11 +39,12 @@ void InputLineW::enable_add_btn()
 
 void InputLineW::unenable_add_btn()
 {
+	if(editline->text() == QString(" ")) return;
 	std::cout << "unable btn" << std::endl;
 	addbtn->setEnabled(false);	
 	emit data_recieved();
 }
 
-void InputLineW::input_clear() { editline->setText(""); std::cout << "inpclear" << std::endl; }
+void InputLineW::input_clear() { editline->setText(" "); std::cout << "inpclear" << std::endl; }
 
 

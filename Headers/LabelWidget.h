@@ -1,7 +1,7 @@
 #ifndef LABELWIDGET_H
 #define LABELWIDGET_H
 
-#define SPACES			"_______________________________________________________________________"
+#define SPACES			"_______________________________"
 
 #include <QWidget>
 #include <QLabel>
@@ -33,8 +33,10 @@ public:
 
 	int getDelInd() { return _delete_ind; }
 	int getEditInd() { return _edit_ind; }
+	bool getChecked() { return chbox->isChecked(); }
 
 	void setText(QString qstr);
+	void setCheckBox(bool var);
 	QString getText();
 
 	void setEnable(bool var);
@@ -46,6 +48,7 @@ signals:
 public slots:
 	void set_del_index();
 	void set_edit_index();
+	void change_task_color();
 };
 
 #endif

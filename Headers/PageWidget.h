@@ -9,7 +9,6 @@
 
 class PageWidget : public QWidget {
 	Q_OBJECT
-	static QString strdata;
 	QLabel* Datelabel {nullptr};
 	TasksWidget* TasksW {nullptr};
 	InputLineW* InputW {nullptr};

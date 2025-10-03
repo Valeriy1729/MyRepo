@@ -16,7 +16,6 @@ public:
 	~TasksWidget() { }
 
 	int getcount() { return LINES_COUNT; }
-	//LabelWidget** getLArr() { return LArray; }
 	int getEditInd() { return LArray[0]->getEditInd(); }
 	void addData(QString qstr);
 	void delData(int lineind);

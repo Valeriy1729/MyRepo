@@ -21,10 +21,13 @@ TasksWidget::TasksWidget(QWidget* parent=nullptr) : QWidget(parent)
 void TasksWidget::delData(int lineind)
 {	
 	if(currentLine >= LINES_COUNT) currentLine = LINES_COUNT;
-	for(int i {lineind}; i < currentLine - 1; i++)
+	for(int i {lineind}; i < currentLine - 1; i++) {
 		LArray[i]->setText(LArray[i + 1]->getText());
+		LArray[i]->setCheckBox(LArray[i + 1]->getChecked());
+	}
 
 	LArray[currentLine - 1]->setText(SPACES);
+	LArray[currentLine - 1]->setCheckBox(false);
 	LArray[currentLine - 1]->setEnable(false);
 	currentLine--;
 }

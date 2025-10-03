@@ -9,8 +9,12 @@ PageWidget::PageWidget(char day, char month, int year, QWidget* parent=nullptr) 
 	InputW = new InputLineW(this);
 	v_layout = new QVBoxLayout(this);
 
+	Datelabel->setObjectName("DateLabel");
+
 	QWidget* WidgetArr[] {Datelabel, TasksW, InputW};
 	for(QWidget* W : WidgetArr) v_layout->addWidget(W);
+
+	this->setFixedSize(700, 400);
 
 	connect(InputW, SIGNAL(data_recieved()), this, SLOT(data_processing()));
 	connect(TasksW, SIGNAL(data_adding_finished()), InputW, SLOT(input_clear()));
@@ -18,8 +22,6 @@ PageWidget::PageWidget(char day, char month, int year, QWidget* parent=nullptr) 
 	connect(TasksW, SIGNAL(edit_mode_finished()), this, SLOT(finish_edit_mode()));
 	connect(this, SIGNAL(clear_input_line()), InputW, SLOT(input_clear()));
 }
-
-QString PageWidget::strdata {""};
 
 void PageWidget::data_processing()
 {
