@@ -13,8 +13,13 @@ class TasksWidget : public QWidget {
 public:
 	TasksWidget(QWidget* parent);
 	~TasksWidget() { }
+
 	int getcount() { return LINES_COUNT; }
 	void addData(QString qstr);
+	void delData(int lineind);
+
+public slots:
+	void call_del_func() { delData(LArray[0]->getdelind()); }
 };
 
 

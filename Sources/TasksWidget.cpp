@@ -10,8 +10,11 @@ TasksWidget::TasksWidget(QWidget* parent=nullptr) : QWidget(parent)
 
 	g_layout = new QGridLayout(this);
 	
-	for(int i{}; i < LINES_COUNT; i++)
+	for(int i{}; i < LINES_COUNT; i++) {
 		g_layout->addWidget(LArray[i], i, 0);
+		connect(LArray[i], SIGNAL(del()), this, SLOT(call_del_func()));
+	}
+
 }
 
 void TasksWidget::addData(QString qstr)
@@ -20,3 +23,13 @@ void TasksWidget::addData(QString qstr)
 	LArray[currentLine++]->setText(qstr);
 }
 
+void TasksWidget::delData(int lineind)
+{	
+	if(currentLine >= LINES_COUNT) currentLine = LINES_COUNT - 1;
+	for(int i {lineind}; i < currentLine - 1; i++)
+		LArray[i]->setText(LArray[i + 1]->getText());
+
+	LArray[currentLine - 1]->setText(SPACES);
+	LArray[currentLine - 1]->setEnable(false);
+	currentLine--;
+}

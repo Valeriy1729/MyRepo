@@ -1,17 +1,14 @@
 #include "LabelWidget.h"
+#include <iostream>
 
 LabelWidget::LabelWidget(QWidget* parent=nullptr) : QWidget(parent)
 {
-	label = new QLabel("_______________________________________", this);
+	label = new QLabel(SPACES, this);
 	numlabel = new QLabel(QString("Task №%1:").arg(globalNumber++), this);
 	editbtn = new QPushButton("edit", this);
 	delbtn = new QPushButton("delete", this);
 	chbox = new QCheckBox(this);
 	g_layout = new QGridLayout(this);
-
-	editbtn->setEnabled(false);
-	delbtn->setEnabled(false);
-	chbox->setEnabled(false);
 
 	QWidget* WidgetArr[] {numlabel, chbox, label, editbtn, delbtn};
 	int ind {1}, _arrind {0};
@@ -22,6 +19,9 @@ LabelWidget::LabelWidget(QWidget* parent=nullptr) : QWidget(parent)
 		g_layout->addWidget(W, 0, ind, 1, lengths[_arrind]);
 		ind += lengths[_arrind++];
 	}
+	
+	connect(delbtn, SIGNAL(clicked()), this, SLOT(set_del_index()));
+	setEnable(false);
 }
 
 int LabelWidget::globalNumber {0};
@@ -29,7 +29,23 @@ int LabelWidget::globalNumber {0};
 void LabelWidget::setText(QString qstr)
 {
 	label->setText(qstr);
-	editbtn->setEnabled(true);
-	delbtn->setEnabled(true);
-	chbox->setEnabled(true);
+	setEnable(true);
 }
+
+QString LabelWidget::getText() { return label->text(); }
+
+int LabelWidget::_delete_ind {-1};
+
+void LabelWidget::set_del_index()
+{
+	_delete_ind = locNumber;
+	emit del();
+}
+
+void LabelWidget::setEnable(bool var)
+{
+	editbtn->setEnabled(var);
+	delbtn->setEnabled(var);
+	chbox->setEnabled(var);
+}
+
