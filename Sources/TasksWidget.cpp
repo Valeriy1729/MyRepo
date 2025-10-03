@@ -21,6 +21,7 @@ void TasksWidget::addData(QString qstr)
 {
 	if(currentLine >= LINES_COUNT) return;
 	LArray[currentLine++]->setText(qstr);
+	emit data_adding_finished();
 }
 
 void TasksWidget::delData(int lineind)

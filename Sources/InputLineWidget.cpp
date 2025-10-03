@@ -36,8 +36,8 @@ void InputLineW::unenable_add_btn()
 	emit data_recieved();
 }
 
-QString InputLineW::gettext()
-{
-	return editline->text();	
-}
+QString InputLineW::gettext() { return editline->text(); }
+
+void InputLineW::input_clear() { editline->setText(""); std::cout << "inpclear" << std::endl; }
+
 

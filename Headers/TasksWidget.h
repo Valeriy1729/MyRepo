@@ -20,6 +20,10 @@ public:
 
 public slots:
 	void call_del_func() { delData(LArray[0]->getdelind()); }
+
+signals:
+	void data_adding_finished();
+
 };
 
 

@@ -26,6 +26,7 @@ public:
 public slots:
 	void enable_add_btn();
 	void unenable_add_btn();
+	void input_clear();
 
 signals:
 	void data_recieved();
