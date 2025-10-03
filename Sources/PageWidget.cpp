@@ -14,11 +14,33 @@ PageWidget::PageWidget(char day, char month, int year, QWidget* parent=nullptr) 
 
 	connect(InputW, SIGNAL(data_recieved()), this, SLOT(data_processing()));
 	connect(TasksW, SIGNAL(data_adding_finished()), InputW, SLOT(input_clear()));
+	connect(TasksW, SIGNAL(call_page_edit_func()), this, SLOT(call_edit_func()));
+	connect(TasksW, SIGNAL(edit_mode_finished()), this, SLOT(finish_edit_mode()));
+	connect(this, SIGNAL(clear_input_line()), InputW, SLOT(input_clear()));
 }
 
 QString PageWidget::strdata {""};
 
 void PageWidget::data_processing()
 {
-	TasksW->addData(InputW->gettext());	
+	TasksW->dataProcessing(InputW->gettext());	
 }
+
+void PageWidget::call_edit_func()
+{
+	TasksW->setEditMode(true);
+	InputW->setLabelText(QString(InputLineW::labelEditText).arg(TasksW->getEditInd()));
+	InputW->setBtnText(InputLineW::btnEditText);
+	InputW->settext(TasksW->getEditingText());
+}
+
+void PageWidget::finish_edit_mode()
+{	
+	TasksW->setEditMode(false);
+	InputW->setLabelText(InputLineW::labelDefaultText);
+	InputW->setBtnText(InputLineW::btnDefaultText);
+	emit clear_input_line();
+}
+
+
+

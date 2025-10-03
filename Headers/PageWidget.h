@@ -21,6 +21,11 @@ public:
 
 public slots:
 	void data_processing();
+	void call_edit_func();
+	void finish_edit_mode();
+
+signals:
+	void clear_input_line();
 };
 
 

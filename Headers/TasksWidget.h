@@ -8,6 +8,7 @@ class TasksWidget : public QWidget {
 	Q_OBJECT
 	enum { LINES_COUNT = 5 };
 	int currentLine {0};
+	bool _edit_mode {false};
 	LabelWidget** LArray {nullptr};
 	QGridLayout* g_layout {nullptr};	
 public:
@@ -15,15 +16,23 @@ public:
 	~TasksWidget() { }
 
 	int getcount() { return LINES_COUNT; }
+	//LabelWidget** getLArr() { return LArray; }
+	int getEditInd() { return LArray[0]->getEditInd(); }
 	void addData(QString qstr);
 	void delData(int lineind);
+	void setEditMode(bool var);
+	void dataProcessing(QString qstr);
+	bool isEditMode() { return _edit_mode; }
+	QString getEditingText();
 
 public slots:
-	void call_del_func() { delData(LArray[0]->getdelind()); }
+	void call_del_func() { delData(LArray[0]->getDelInd()); }
+	void call_tasks_edit_func() { emit call_page_edit_func(); }
 
 signals:
 	void data_adding_finished();
-
+	void call_page_edit_func();
+	void edit_mode_finished();
 };
 
 

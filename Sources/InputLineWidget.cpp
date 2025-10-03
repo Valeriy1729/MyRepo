@@ -1,11 +1,16 @@
 #include "InputLineWidget.h"
 #include <iostream>
 
+const char* InputLineW::btnDefaultText {"add"};
+const char* InputLineW::btnEditText {"done"};
+const char* InputLineW::labelDefaultText {"Enter new task: "};
+const char* InputLineW::labelEditText {"Edit Task№%1: "};
+
 InputLineW::InputLineW(QWidget* parent=nullptr) : QWidget(parent)
 {
-	label = new QLabel("Enter new task: ", this);		
+	label = new QLabel(labelDefaultText, this);		
 	editline = new QLineEdit(this);
-	addbtn = new QPushButton("add", this);
+	addbtn = new QPushButton(btnDefaultText, this);
 	g_layout = new QGridLayout(this);
 
 	addbtn->setEnabled(false);
@@ -15,7 +20,7 @@ InputLineW::InputLineW(QWidget* parent=nullptr) : QWidget(parent)
 	int lengths[] {2, 8, 1};
 
 	for(QWidget* W : WidgetArr) {
-		W->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
+		W->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
 		g_layout->addWidget(W, 0, ind, 1, lengths[_arrind]);
 		ind += lengths[_arrind++];
 	}
@@ -35,8 +40,6 @@ void InputLineW::unenable_add_btn()
 	addbtn->setEnabled(false);	
 	emit data_recieved();
 }
-
-QString InputLineW::gettext() { return editline->text(); }
 
 void InputLineW::input_clear() { editline->setText(""); std::cout << "inpclear" << std::endl; }
 

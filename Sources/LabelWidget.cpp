@@ -1,6 +1,9 @@
 #include "LabelWidget.h"
 #include <iostream>
 
+int LabelWidget::_delete_ind {-1};
+int LabelWidget::_edit_ind {-1};
+
 LabelWidget::LabelWidget(QWidget* parent=nullptr) : QWidget(parent)
 {
 	label = new QLabel(SPACES, this);
@@ -21,6 +24,7 @@ LabelWidget::LabelWidget(QWidget* parent=nullptr) : QWidget(parent)
 	}
 	
 	connect(delbtn, SIGNAL(clicked()), this, SLOT(set_del_index()));
+	connect(editbtn, SIGNAL(clicked()), this, SLOT(set_edit_index()));
 	setEnable(false);
 }
 
@@ -34,12 +38,16 @@ void LabelWidget::setText(QString qstr)
 
 QString LabelWidget::getText() { return label->text(); }
 
-int LabelWidget::_delete_ind {-1};
-
 void LabelWidget::set_del_index()
 {
 	_delete_ind = locNumber;
 	emit del();
+}
+
+void LabelWidget::set_edit_index()
+{
+	_edit_ind = locNumber;
+	emit edit();	
 }
 
 void LabelWidget::setEnable(bool var)
