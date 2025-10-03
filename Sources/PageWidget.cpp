@@ -13,6 +13,7 @@ PageWidget::PageWidget(char day, char month, int year, QWidget* parent=nullptr) 
 	for(QWidget* W : WidgetArr) v_layout->addWidget(W);
 
 	connect(InputW, SIGNAL(data_recieved()), this, SLOT(data_processing()));
+	connect(TasksW, SIGNAL(data_adding_finished()), InputW, SLOT(input_clear()));
 }
 
 QString PageWidget::strdata {""};
