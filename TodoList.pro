@@ -16,5 +16,5 @@ INCLUDEPATH += Headers
 
 # Input
 HEADERS += Headers/LabelWidget.h Headers/TasksWidget.h Headers/InputLineWidget.h Headers/PageWidget.h Headers/DateClass.h
-SOURCES += Sources/LabelWidget.cpp Sources/main.cpp Sources/TasksWidget.cpp Sources/InputLineWidget.cpp Sources/PageWidget.cpp Sources/DateClass.cpp
+SOURCES += Sources/LabelWidget.cpp Sources/main.cpp Sources/TasksWidget.cpp Sources/InputLineWidget.cpp Sources/PageWidget.cpp Sources/DateClass.cpp Sources/SaveLoad.cpp
 OBJECTS_DIR = Objects

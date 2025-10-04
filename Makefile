@@ -57,7 +57,8 @@ SOURCES       = Sources/LabelWidget.cpp \
 		Sources/TasksWidget.cpp \
 		Sources/InputLineWidget.cpp \
 		Sources/PageWidget.cpp \
-		Sources/DateClass.cpp moc_LabelWidget.cpp \
+		Sources/DateClass.cpp \
+		Sources/SaveLoad.cpp moc_LabelWidget.cpp \
 		moc_TasksWidget.cpp \
 		moc_InputLineWidget.cpp \
 		moc_PageWidget.cpp
@@ -67,6 +68,7 @@ OBJECTS       = Objects/LabelWidget.o \
 		Objects/InputLineWidget.o \
 		Objects/PageWidget.o \
 		Objects/DateClass.o \
+		Objects/SaveLoad.o \
 		Objects/moc_LabelWidget.o \
 		Objects/moc_TasksWidget.o \
 		Objects/moc_InputLineWidget.o \
@@ -157,7 +159,8 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		Sources/TasksWidget.cpp \
 		Sources/InputLineWidget.cpp \
 		Sources/PageWidget.cpp \
-		Sources/DateClass.cpp
+		Sources/DateClass.cpp \
+		Sources/SaveLoad.cpp
 QMAKE_TARGET  = TodoList
 DESTDIR       = 
 TARGET        = TodoList
@@ -342,7 +345,7 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents Headers/LabelWidget.h Headers/TasksWidget.h Headers/InputLineWidget.h Headers/PageWidget.h Headers/DateClass.h $(DISTDIR)/
-	$(COPY_FILE) --parents Sources/LabelWidget.cpp Sources/main.cpp Sources/TasksWidget.cpp Sources/InputLineWidget.cpp Sources/PageWidget.cpp Sources/DateClass.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents Sources/LabelWidget.cpp Sources/main.cpp Sources/TasksWidget.cpp Sources/InputLineWidget.cpp Sources/PageWidget.cpp Sources/DateClass.cpp Sources/SaveLoad.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -443,6 +446,10 @@ Objects/PageWidget.o: Sources/PageWidget.cpp Headers/PageWidget.h \
 
 Objects/DateClass.o: Sources/DateClass.cpp Headers/DateClass.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Objects/DateClass.o Sources/DateClass.cpp
+
+Objects/SaveLoad.o: Sources/SaveLoad.cpp Headers/TasksWidget.h \
+		Headers/LabelWidget.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Objects/SaveLoad.o Sources/SaveLoad.cpp
 
 Objects/moc_LabelWidget.o: moc_LabelWidget.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Objects/moc_LabelWidget.o moc_LabelWidget.cpp

@@ -48,7 +48,6 @@ int main(int argc, char** argv)
 	PW.setPalette(pal);
 	PW.setAutoFillBackground(true);
 
-	//W.setWindowFlags(Qt::FramelessWindowHint);
 	W.show();
 
 	app.exec();
