@@ -1,5 +1,4 @@
 #include "InputLineWidget.h"
-#include <iostream>
 
 const char* InputLineW::btnDefaultText {"add"};
 const char* InputLineW::btnEditText {"done"};
@@ -40,11 +39,10 @@ void InputLineW::enable_add_btn()
 void InputLineW::unenable_add_btn()
 {
 	if(editline->text() == QString(" ")) return;
-	std::cout << "unable btn" << std::endl;
 	addbtn->setEnabled(false);	
 	emit data_recieved();
 }
 
-void InputLineW::input_clear() { editline->setText(" "); std::cout << "inpclear" << std::endl; }
+void InputLineW::input_clear() { editline->setText(" "); }
 
 

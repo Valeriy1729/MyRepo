@@ -17,7 +17,7 @@ LabelWidget::LabelWidget(QWidget* parent=nullptr) : QWidget(parent)
 
 	delbtn->setObjectName("delbtn");
 	editbtn->setObjectName("editbtn");
-	label->setObjectName("line");
+	label->setObjectName("LabelTask");
 	numlabel->setObjectName("Labellabel");
 
 	QWidget* WidgetArr[] {numlabel, chbox, label, editbtn, delbtn};
@@ -67,7 +67,13 @@ void LabelWidget::setEnable(bool var)
 	label->setEnabled(var);
 }
 
-void LabelWidget::change_task_color()
+void LabelWidget::change_task_color() { label->setEnabled(!(chbox->isChecked())); }
+
+void LabelWidget::setEditMode(bool var)
 {
-	label->setEnabled(!(chbox->isChecked()));
+	editbtn->setEnabled(!var);
+	delbtn->setEnabled(!var);
+	chbox->setEnabled(!var);
+	if(!(chbox->isChecked() && var && label->text() != QString(SPACES)))
+	label->setEnabled(var);
 }

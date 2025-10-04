@@ -1,6 +1,4 @@
 #include "PageWidget.h"
-#include <iostream>
-#include <QDebug>
 
 PageWidget::PageWidget(char day, char month, int year, QWidget* parent=nullptr) : QWidget(parent)
 {
@@ -12,6 +10,7 @@ PageWidget::PageWidget(char day, char month, int year, QWidget* parent=nullptr) 
 	this->setFixedSize(700, 400);
 
 	Datelabel->setObjectName("DateLabel");
+	//Datelabel->setFont(QFont("Courier new", 19, 100));
 
 	QWidget* WidgetArr[] {Datelabel, TasksW, InputW};
 	for(QWidget* W : WidgetArr) v_layout->addWidget(W);

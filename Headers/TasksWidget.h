@@ -24,8 +24,10 @@ public:
 	void dataProcessing(QString qstr);
 	bool isEditMode() { return _edit_mode; }
 	QString getEditingText();
+
 	void saveList();
 	void loadFromSettings();
+	void clearSaves();
 
 public slots:
 	void call_del_func() { delData(LArray[0]->getDelInd()); }

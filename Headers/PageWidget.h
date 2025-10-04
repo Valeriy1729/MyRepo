@@ -2,6 +2,7 @@
 #define PAGEWIDGET_H
 
 #include <QVBoxLayout>
+#include <QFont>
 #include "InputLineWidget.h"
 #include "TasksWidget.h"
 #include "DateClass.h"
@@ -17,8 +18,10 @@ class PageWidget : public QWidget {
 public:
 	PageWidget(char day, char month, int year, QWidget* parent);
 	~PageWidget() { }
-	void save() { TasksW->saveList(); }
+
 	void load() { TasksW->loadFromSettings(); }
+	void save() { TasksW->saveList(); }
+	void clearMem() { TasksW->clearSaves(); }
 
 public slots:
 	void data_processing();

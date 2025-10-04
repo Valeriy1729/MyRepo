@@ -36,6 +36,7 @@ public:
 	bool getChecked() { return chbox->isChecked(); }
 	bool getEnabled() { return delbtn->isEnabled(); }
 
+	void setEditMode(bool var);
 	void setText(QString qstr);
 	void setCheckBox(bool var);
 	QString getText();
