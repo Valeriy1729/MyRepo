@@ -2,6 +2,7 @@
 #define MANIWIDGET_H
 
 #include "LabelWidget.h"
+#include <QSettings>
 
 
 class TasksWidget : public QWidget {
@@ -23,6 +24,8 @@ public:
 	void dataProcessing(QString qstr);
 	bool isEditMode() { return _edit_mode; }
 	QString getEditingText();
+	void saveList();
+	void loadFromSettings();
 
 public slots:
 	void call_del_func() { delData(LArray[0]->getDelInd()); }

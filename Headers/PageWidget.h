@@ -17,6 +17,8 @@ class PageWidget : public QWidget {
 public:
 	PageWidget(char day, char month, int year, QWidget* parent);
 	~PageWidget() { }
+	void save() { TasksW->saveList(); }
+	void load() { TasksW->loadFromSettings(); }
 
 public slots:
 	void data_processing();

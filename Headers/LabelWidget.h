@@ -34,6 +34,7 @@ public:
 	int getDelInd() { return _delete_ind; }
 	int getEditInd() { return _edit_ind; }
 	bool getChecked() { return chbox->isChecked(); }
+	bool getEnabled() { return delbtn->isEnabled(); }
 
 	void setText(QString qstr);
 	void setCheckBox(bool var);
