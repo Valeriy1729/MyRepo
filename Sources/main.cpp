@@ -1,10 +1,7 @@
 #include <QDate>
 #include <QApplication>
-#include <QThread>
-#include <QRegion>
 #include <QPalette>
 #include <QMainWindow>
-#include <QFrame>
 #include "PageWidget.h"
 
 int main(int argc, char** argv)
@@ -25,7 +22,6 @@ int main(int argc, char** argv)
 		QLineEdit { font-size: 14pt; font-weight: 100; background-color: #f0f9fd}		 \
 		QPushButton { font-size: 14pt; font-weight: 100;}					 \
 		PageWidget  { font-size: 14pt; font-weight: 100; color: #964fe2}			 \
-		QMainWindow { background-image: url('399.jpg'); }  				         \
 	";			 
 	
 	app.setStyleSheet(styleStr);
