@@ -4,13 +4,10 @@
 #include <QMainWindow>
 #include "PageWidget.h"
 
+#define BORDER_SIZE 			6
 
-int main(int argc, char** argv)
+void stylizeApp(QApplication& app)
 {
-	int BORDER_SIZE = 6;
-
-	QApplication app(argc, argv);
-
 	QString styleStr = R"(						
 		QPushButton#delbtn { background-color: #b6e0f3; color: #5ebae5; }
 		QPushButton#delbtn:enabled { background-color: #7bc7ea; color: #000000; }
@@ -31,23 +28,39 @@ int main(int argc, char** argv)
 	
 	app.setStyleSheet("");
 	app.setStyleSheet(styleStr);
-	QDate Date(QDate::currentDate());
+}
 
-	QMainWindow W;
-
+void setWindowSettings(QMainWindow& W)
+{
 	W.setFixedSize(700 + 2 * BORDER_SIZE, 400 + 2 * BORDER_SIZE);
 	W.move(200, 200);
 	W.setWindowTitle("T O D O      L I S T");
+}
 
-	PageWidget PW(Date.day(), Date.month(), Date.year(), &W);
+void setPageWidgetSettings(PageWidget& PW)
+{
+		
 	PW.move(BORDER_SIZE, BORDER_SIZE);
-	PW.load();
-
 	QPalette pal = PW.palette();
 	pal.setBrush(QPalette::Window, QBrush(QPixmap("./403.jpg")));
 	PW.setPalette(pal);
 	PW.setAutoFillBackground(true);
+}
 
+int main(int argc, char** argv)
+{
+
+	QApplication app(argc, argv);
+	stylizeApp(app);
+
+	QMainWindow W;
+	setWindowSettings(W);
+
+	QDate Date(QDate::currentDate());
+	PageWidget PW(Date.day(), Date.month(), Date.year(), &W);
+	setPageWidgetSettings(PW);
+
+	PW.load();
 	W.show();
 
 	app.exec();
